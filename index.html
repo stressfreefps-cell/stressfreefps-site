@@ -1,0 +1,512 @@
+whats the website code
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>StressFreeFPS</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:#050505;
+      color:white;
+      font-family:'Poppins',sans-serif;
+      overflow-x:hidden;
+    }
+
+    .bg-glow{
+      position:fixed;
+      width:700px;
+      height:700px;
+      background:#b6ff0030;
+      filter:blur(140px);
+      top:-200px;
+      right:-150px;
+      z-index:-1;
+    }
+
+    nav{
+      width:100%;
+      padding:25px 10%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      position:fixed;
+      top:0;
+      backdrop-filter:blur(10px);
+      background:#00000080;
+      border-bottom:1px solid #b6ff0020;
+      z-index:999;
+    }
+
+    nav h1{
+      font-family:'Orbitron',sans-serif;
+      color:#b6ff00;
+      font-size:28px;
+      letter-spacing:2px;
+    }
+
+    nav a{
+      color:white;
+      text-decoration:none;
+      margin-left:25px;
+      transition:.3s;
+      font-weight:500;
+    }
+
+    nav a:hover{
+      color:#b6ff00;
+    }
+
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:120px 10%;
+      position:relative;
+    }
+
+    .hero-content{
+      max-width:950px;
+    }
+
+    .logo{
+      width:280px;
+      margin-bottom:30px;
+      filter:drop-shadow(0 0 20px #b6ff0080);
+    }
+
+    .hero h2{
+      font-size:72px;
+      line-height:1.1;
+      font-family:'Orbitron',sans-serif;
+      margin-bottom:25px;
+      text-transform:uppercase;
+    }
+
+    .hero h2 span{
+      color:#b6ff00;
+    }
+
+    .hero p{
+      font-size:20px;
+      color:#d0d0d0;
+      line-height:1.8;
+      margin-bottom:40px;
+    }
+
+    .buttons{
+      display:flex;
+      justify-content:center;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      padding:18px 40px;
+      border-radius:14px;
+      text-decoration:none;
+      font-weight:700;
+      transition:.3s;
+      border:none;
+      cursor:pointer;
+      font-size:16px;
+    }
+
+    .primary{
+      background:#b6ff00;
+      color:black;
+      box-shadow:0 0 25px #b6ff0070;
+    }
+
+    .primary:hover{
+      transform:translateY(-4px);
+      box-shadow:0 0 40px #b6ff00;
+    }
+
+    .secondary{
+      border:2px solid #b6ff00;
+      color:#b6ff00;
+      background:transparent;
+    }
+
+    .secondary:hover{
+      background:#b6ff00;
+      color:black;
+    }
+
+    section{
+      padding:120px 10%;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:70px;
+    }
+
+    .section-title h3{
+      font-size:52px;
+      font-family:'Orbitron',sans-serif;
+      margin-bottom:15px;
+    }
+
+    .section-title span{
+      color:#b6ff00;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:30px;
+    }
+
+    .card{
+      background:#111;
+      border:1px solid #222;
+      padding:35px;
+      border-radius:24px;
+      transition:.3s;
+    }
+
+    .card:hover{
+      transform:translateY(-8px);
+      border-color:#b6ff00;
+      box-shadow:0 0 35px #b6ff0020;
+    }
+
+    .card h4{
+      font-size:24px;
+      margin-bottom:15px;
+      color:#b6ff00;
+    }
+
+    .card p{
+      color:#cfcfcf;
+      line-height:1.8;
+    }
+
+    .pricing{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:35px;
+    }
+
+    .price-box{
+      background:#111;
+      border-radius:24px;
+      padding:45px;
+      text-align:center;
+      border:2px solid #1e1e1e;
+      transition:.3s;
+    }
+
+    .price-box:hover{
+      border-color:#b6ff00;
+      transform:scale(1.03);
+      box-shadow:0 0 45px #b6ff0020;
+    }
+
+    .price-box h4{
+      font-size:30px;
+      margin-bottom:15px;
+      font-family:'Orbitron';
+    }
+
+    .price{
+      font-size:58px;
+      color:#b6ff00;
+      margin-bottom:25px;
+      font-weight:700;
+    }
+
+    .price-box ul{
+      list-style:none;
+      margin-bottom:35px;
+    }
+
+    .price-box li{
+      margin:15px 0;
+      color:#d8d8d8;
+    }
+
+    .testimonials{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:25px;
+    }
+
+    .review{
+      background:#111;
+      padding:30px;
+      border-radius:20px;
+      border:1px solid #222;
+    }
+
+    .review p{
+      color:#d7d7d7;
+      line-height:1.7;
+      margin-bottom:20px;
+    }
+
+    .review h5{
+      color:#b6ff00;
+      font-size:18px;
+    }
+
+    .contact{
+      text-align:center;
+    }
+
+    .contact-box{
+      background:#111;
+      padding:50px;
+      border-radius:25px;
+      max-width:700px;
+      margin:auto;
+      border:1px solid #222;
+    }
+
+    .contact-box h4{
+      font-size:38px;
+      margin-bottom:25px;
+      font-family:'Orbitron';
+    }
+
+    .contact-info{
+      margin-top:25px;
+      line-height:2.3;
+      color:#d0d0d0;
+      font-size:18px;
+    }
+
+    footer{
+      text-align:center;
+      padding:35px;
+      border-top:1px solid #1a1a1a;
+      color:#777;
+      margin-top:80px;
+    }
+
+    @media(max-width:768px){
+
+      .hero h2{
+        font-size:42px;
+      }
+
+      .section-title h3{
+        font-size:36px;
+      }
+
+      nav{
+        padding:20px 6%;
+      }
+
+      nav a{
+        display:none;
+      }
+
+      .logo{
+        width:220px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="bg-glow"></div>
+
+<nav>
+  <h1>StressFreeFPS</h1>
+
+  <div>
+    <a href="#services">Services</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<section class="hero">
+
+  <div class="hero-content">
+
+    <img src="logo.png" class="logo">
+
+    <h2>
+      BOOST YOUR <span>FPS</span><br>
+      LOWER YOUR LATENCY
+    </h2>
+
+    <p>
+      Professional 1-on-1 gaming optimization built for competitive players.
+      Get smoother gameplay, lower input delay, reduced stutters, and maximum performance.
+    </p>
+
+    <div class="buttons">
+      <a href="#pricing" class="btn primary">GET OPTIMIZED</a>
+      <a href="#contact" class="btn secondary">CONTACT US</a>
+    </div>
+
+  </div>
+
+</section>
+
+<section id="services">
+
+  <div class="section-title">
+    <h3>WHAT WE <span>OPTIMIZE</span></h3>
+  </div>
+
+  <div class="cards">
+
+    <div class="card">
+      <h4>Windows Optimization</h4>
+      <p>
+        Remove unnecessary background processes and improve overall PC responsiveness.
+      </p>
+    </div>
+
+    <div class="card">
+      <h4>NVIDIA Settings</h4>
+      <p>
+        Fine-tuned control panel settings for lower latency and maximum FPS.
+      </p>
+    </div>
+
+    <div class="card">
+      <h4>In-Game Tweaks</h4>
+      <p>
+        Competitive graphics settings customized specifically for your hardware.
+      </p>
+    </div>
+
+    <div class="card">
+      <h4>Latency Reduction</h4>
+      <p>
+        Lower input delay and improve responsiveness for competitive gaming.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+<section id="pricing">
+
+  <div class="section-title">
+    <h3>PRICING <span>PLANS</span></h3>
+  </div>
+
+  <div class="pricing">
+
+    <div class="price-box">
+      <h4>Basic Optimization</h4>
+
+      <div class="price">$8.99</div>
+
+      <ul>
+        <li>FPS Optimization</li>
+        <li>Windows Tweaks</li>
+        <li>NVIDIA Settings</li>
+        <li>Game Settings</li>
+      </ul>
+
+      <button class="btn primary">BUY NOW</button>
+    </div>
+
+    <div class="price-box">
+      <h4>Full Competitive Pack</h4>
+
+      <div class="price">$14.99</div>
+
+      <ul>
+        <li>Everything Included</li>
+        <li>Latency Reduction</li>
+        <li>Advanced Tweaks</li>
+        <li>1-on-1 Support</li>
+      </ul>
+
+      <button class="btn primary">BUY NOW</button>
+    </div>
+
+  </div>
+
+</section>
+
+<section id="reviews">
+
+  <div class="section-title">
+    <h3>PLAYER <span>REVIEWS</span></h3>
+  </div>
+
+  <div class="testimonials">
+
+    <div class="review">
+      <p>
+        “Went from constant stutters to buttery smooth gameplay. Huge difference.”
+      </p>
+      <h5>- Rust Player</h5>
+    </div>
+
+    <div class="review">
+      <p>
+        “Actually lowered my input delay noticeably. My game feels WAY smoother.”
+      </p>
+      <h5>- Fortnite Player</h5>
+    </div>
+
+    <div class="review">
+      <p>
+        “Professional and quick setup. FPS increased instantly after optimization.”
+      </p>
+      <h5>- Valorant Player</h5>
+    </div>
+
+  </div>
+
+</section>
+
+<section id="contact" class="contact">
+
+  <div class="section-title">
+    <h3>GET <span>STARTED</span></h3>
+  </div>
+
+  <div class="contact-box">
+
+    <h4>Contact StressFreeFPS</h4>
+
+    <p>
+      Ready to improve your gaming performance?
+      Reach out below and let’s get your PC optimized.
+    </p>
+
+    <div class="contact-info">
+      📧 stressfreefps@gmail.com <br>
+      🎮 Discord: Dax7615 <br>
+      🎵 TikTok: @StressFreeFPS <br>
+      🐦 X: @StressFreeFPS
+    </div>
+
+  </div>
+
+</section>
+
+<footer>
+  © 2026 StressFreeFPS — Optimize. Boost. Dominate.
+</footer>
+
+</body>
